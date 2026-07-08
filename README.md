@@ -7,31 +7,8 @@ Adaptive Inference: Scales compute usage based on video complexity—processing 
 Production-Ready: Calibrated for real-world deployment, handling both internet-sourced deepfakes and high-definition smartphone recordings.
 ## Architecture:
 
-    '''mermaid
-    graph TD
-      subgraph Ingestion [Phase 1: Ingestion & Spatial Extraction]
-          V[Raw Video Stream] --> MTCNN[MTCNN Face Detector]
-          MTCNN --> C[Cropped Face Sequence]
-          C --> Swin[Swin Transformer Tiny]
-      end
-  
-      subgraph RL_Brain [Phase 2: RL-Driven Frame Selection]
-          Swin -- "768-dim Frame Embedding" --> PPO{PPO RL Agent}
-          PPO -- "Action: Skip (0)" --> Next[Discard Frame]
-          PPO -- "Action: Keep (1)" --> Buffer[Selected Feature Sequence]
-      end
-  
-      subgraph Temporal [Phase 3: Temporal Classification]
-          Buffer --> TempTrans[Temporal Transformer Encoder]
-          TempTrans --> Final[Classification Output]
-      end
-  
-      style PPO fill:#f9f,stroke:#333,stroke-width:4px
-      style Swin fill:#bbf,stroke:#333
-      style TempTrans fill:#bfb,stroke:#333
-      style Final fill:#ff9,stroke:#333
+<img width="2486" height="5223" alt="Video Ingestion and-2026-07-08-154626" src="https://github.com/user-attachments/assets/c9cd6e6f-9473-41a7-90f6-ae50a5bf18b5" />
 
-    '''
 
 The system operates in three phases:
 Spatial Feature Extraction: MTCNN detects faces, and Swin Transformer (Tiny) encodes spatial features into a 768-dimensional vector.
