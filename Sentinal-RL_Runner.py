@@ -27,7 +27,7 @@ transform = transforms.Compose([
     )
 ])
 
-class TemporalTransformerEncoder2(nn.Module):
+class TemporalTransformerEncoder(nn.Module):
     def __init__(self,
                  feature_dim=768,      # Swin output dim
                  num_frames=32,
@@ -98,7 +98,7 @@ class TemporalTransformerEncoder2(nn.Module):
 
         return logits
 
-model = TemporalTransformerEncoder2(
+model = TemporalTransformerEncoder(
     feature_dim=768,
     num_frames=32,
     num_heads=8,
@@ -247,9 +247,6 @@ def predict_single_video(video_path, swin_model, rl_agent, transformer_model,mtc
 
     return prediction, confidence, len(selected_indices)
 
-# ==========================================
-# HOW TO RUN IT
-# ==========================================
 if __name__ == "__main__":
     # Ensure all your models are loaded and sent to the correct device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
